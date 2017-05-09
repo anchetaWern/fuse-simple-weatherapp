@@ -5,29 +5,15 @@
 	var Geolocation = require('FuseJS/GeoLocation');
 
 	var icons = {
-		day: {
-			'clear': '\uF00d',
-			'clouds': '\uF002',
-			'drizzle': '\uF009',
-			'rain': '\uF008',
-			'thunderstorm': '\uF010',
-			'snow': '\uF00a',
-			'mist': '\uF0b6',
-			'fog': '\uF003'
-		},
-		night: {
-			'clear': '\uF02e',
-			'clouds': '\uF086',
-			'drizzle': '\uF029',
-			'rain': '\uF028',
-			'thunderstorm': '\uF02d',
-			'snow': '\uF02a',
-			'mist': '\uF04a',			
-			'fog': '\uF04a'
-		},
-		neutral: {
-			'temp': '\uF055'
-		}
+		'clear': '\uF00d',
+		'clouds': '\uF002',
+		'drizzle': '\uF009',
+		'rain': '\uF008',
+		'thunderstorm': '\uF010',
+		'snow': '\uF00a',
+		'mist': '\uF0b6',
+		'fog': '\uF003',
+		'temp': '\uF055'
 	};
 	
 	function kelvinToCelsius(kelvin){
@@ -54,7 +40,7 @@
 	.then(function(responseObject) { 
 		weather_data.value = {
 			name: responseObject.name,
-			icon: icons.day[responseObject.weather[0].main.toLowerCase()],
+			icon: icons[responseObject.weather[0].main.toLowerCase()],
 			weather: responseObject.weather[0],
 			temperature: kelvinToCelsius(responseObject.main.temp)  + ' °C'
 		}; 
@@ -78,7 +64,7 @@
 				<Text Value="{weather_data.icon}"  Font="wi" FontSize="150" Alignment="Center" TextColor="#fff" />
 				<Text Value="{weather_data.weather.description}" FontSize="30" Alignment="Center"  TextColor="#fff" />
 				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="{icons.neutral.temp}" Font="wi" FontSize="20" TextColor="#fff" />
+					<Text Value="{icons.temp}" Font="wi" FontSize="20" TextColor="#fff" />
 					<Text Value="{weather_data.temperature}" Margin="10,0,0,0" FontSize="20" TextColor="#fff" />
 				</StackPanel>
             </StackPanel>
